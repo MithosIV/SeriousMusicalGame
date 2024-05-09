@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -956,6 +956,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nota_Negra_Mi
       objectReference: {fileID: 0}
+    - target: {fileID: 3658529641110049824, guid: 720ce96cd6006a74792a6d3f836d0dde, type: 3}
+      propertyPath: m_TagString
+      value: Note
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658529641110049825, guid: 720ce96cd6006a74792a6d3f836d0dde, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658529641110049825, guid: 720ce96cd6006a74792a6d3f836d0dde, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3658529641110049828, guid: 720ce96cd6006a74792a6d3f836d0dde, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1074,9 +1086,21 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1623394490972465986, guid: 6380ea1667b847b419517c3604694de2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623394490972465986, guid: 6380ea1667b847b419517c3604694de2, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1623394490972465989, guid: 6380ea1667b847b419517c3604694de2, type: 3}
       propertyPath: m_Name
       value: Nota_Negra_Do
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623394490972465989, guid: 6380ea1667b847b419517c3604694de2, type: 3}
+      propertyPath: m_TagString
+      value: Note
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6380ea1667b847b419517c3604694de2, type: 3}
@@ -1351,9 +1375,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 165513811885367918, guid: 7f8c552405ce25f4781757936665411e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 165513811885367918, guid: 7f8c552405ce25f4781757936665411e, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 165513811885367919, guid: 7f8c552405ce25f4781757936665411e, type: 3}
       propertyPath: m_Name
       value: Nota_Negra_Re
+      objectReference: {fileID: 0}
+    - target: {fileID: 165513811885367919, guid: 7f8c552405ce25f4781757936665411e, type: 3}
+      propertyPath: m_TagString
+      value: Note
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8c552405ce25f4781757936665411e, type: 3}
@@ -1404,9 +1440,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1926015454}
     m_Modifications:
+    - target: {fileID: 5892280572892492536, guid: 6b331725c80aebe4cadcab31c9c4892b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5892280572892492536, guid: 6b331725c80aebe4cadcab31c9c4892b, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5892280572892492539, guid: 6b331725c80aebe4cadcab31c9c4892b, type: 3}
       propertyPath: m_Name
       value: Nota_Negra_Fa
+      objectReference: {fileID: 0}
+    - target: {fileID: 5892280572892492539, guid: 6b331725c80aebe4cadcab31c9c4892b, type: 3}
+      propertyPath: m_TagString
+      value: Note
       objectReference: {fileID: 0}
     - target: {fileID: 5892280572892492543, guid: 6b331725c80aebe4cadcab31c9c4892b, type: 3}
       propertyPath: m_RootOrder
