@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool groundedPlayer;
     [SerializeField] float playerSpeed = 2.0f;
     [SerializeField] float jumpHeight = 1.0f;
-    [SerializeField] float gravityValue = -9.81f;
+    [SerializeField] float downwardMovementMultiplier = 3f;
+    [SerializeField] float upwardMovementMultiplier = 1.7f;
 
     private void Start()
     {
@@ -36,10 +37,23 @@ public class PlayerController : MonoBehaviour
         // Jump
         if (Input.GetButtonDown("Jump") && groundedPlayer)
         {
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Sqrt(jumpHeight * -2f * gravityValue));
+            if (groundedPlayer)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Sqrt(jumpHeight * -2f * Physics2D.gravity.y));
+            }
         }
 
-        // Apply gravity
-        rb.velocity += new Vector2(0, gravityValue * Time.deltaTime);
+        if (rb.velocity.y > 0)
+        {
+            rb.gravityScale = upwardMovementMultiplier;
+        }
+        else if (rb.velocity.y < 0)
+        {
+            rb.gravityScale = downwardMovementMultiplier;
+        }
+        else
+        {
+            rb.gravityScale = 1f;
+        }
     }
 }
