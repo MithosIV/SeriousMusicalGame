@@ -1,3 +1,4 @@
+using HutongGames.PlayMaker.Actions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private float horizontal;
     [SerializeField] bool groundedPlayer;
     [SerializeField] float playerSpeed = 2.0f;
     [SerializeField] float jumpHeight = 1.0f;
@@ -26,13 +28,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0f);
         }
 
-        Vector2 move = new Vector2(Input.GetAxis("Horizontal"), 0);
-        rb.velocity = new Vector2(move.x * playerSpeed, rb.velocity.y);
-
-        if (move != Vector2.zero)
-        {
-            transform.right = move;
-        }
+        horizontal = Input.GetAxisRaw("Horizontal");
 
         // Jump
         if (Input.GetButtonDown("Jump") && groundedPlayer)
@@ -55,5 +51,9 @@ public class PlayerController : MonoBehaviour
         {
             rb.gravityScale = 1f;
         }
+    }
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(horizontal * playerSpeed, rb.velocity.y);
     }
 }
