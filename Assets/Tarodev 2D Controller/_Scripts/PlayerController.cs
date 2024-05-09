@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace MusicGame
-{
+
     
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
@@ -21,7 +20,11 @@ namespace MusicGame
         public event Action<bool, float> GroundedChanged;
         public event Action Jumped;
 
-        private GameObject notePlatform;
+        public GameObject notePlatform;
+
+        public PlayerManager playerManager;
+        public LevelManager levelManager;
+        
         #endregion
 
         private float _time;
@@ -66,7 +69,37 @@ namespace MusicGame
                 Debug.Log("Presionaste E");
                 noteManager.PlayNoteAudio(notePlatform);
             }
+
+            if (Input.GetKeyDown(KeyCode.Q) && groundIsNote == true)
+            {
+                Debug.Log("Presionaste Q");
+                noteManager.PlayNoteAudio(notePlatform);
+                playerManager.AddSelectedNoteToList(notePlatform);
+            }
             
+            if(Input.GetKeyDown(KeyCode.P))
+            {
+                Debug.Log("Presionaste P");
+                if(levelManager.melodyNotes.Count == playerManager.selectedNotes.Count)
+                {
+                    playerManager.SendMelodyToLevelManager();
+                }
+                else
+                {
+                    Debug.LogError("Selecciona la cantidad correcta de notas");
+                }
+            }
+
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                Debug.Log("Borre una");
+                playerManager.RemoveLastNote();
+            }
+            if(Input.GetKeyDown(KeyCode.G))
+            {
+                Debug.Log("Borre todo");
+               playerManager.ClearNoteList();
+            }
         }
 
         private void FixedUpdate()
@@ -244,4 +277,3 @@ namespace MusicGame
         public event Action Jumped;
         public Vector2 FrameInput { get; }
     }
-}

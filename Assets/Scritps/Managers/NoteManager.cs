@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MusicGame{
     public class NoteManager : MonoBehaviour
     {
         //[SerializeField] private PlayerController player;
@@ -26,4 +25,3 @@ namespace MusicGame{
             Debug.Log("Reproduciendo sonido de " + notePlatform.name);
         }
     }
-}
