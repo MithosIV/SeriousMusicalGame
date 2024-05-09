@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MusicGame
+namespace TarodevController
 {
     /// <summary>
     /// VERY primitive animator example.

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MusicGame
+namespace TarodevController
 {
     [CreateAssetMenu]
     public class ScriptableStats : ScriptableObject
