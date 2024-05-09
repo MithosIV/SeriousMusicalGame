@@ -1,14 +1,15 @@
 using System;
 using UnityEngine;
 
-namespace MusicGame
+namespace TarodevController
 {
-    
+    /// <summary>
+    /// 
+    /// </summary>
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
         [SerializeField] private ScriptableStats _stats;
-        [SerializeField] private NoteManager noteManager;
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
         private FrameInput _frameInput;
@@ -21,7 +22,6 @@ namespace MusicGame
         public event Action<bool, float> GroundedChanged;
         public event Action Jumped;
 
-        private GameObject notePlatform;
         #endregion
 
         private float _time;
@@ -40,7 +40,7 @@ namespace MusicGame
             GatherInput();
         }
 
-        public void GatherInput()
+        private void GatherInput()
         {
             _frameInput = new FrameInput
             {
@@ -60,28 +60,10 @@ namespace MusicGame
                 _jumpToConsume = true;
                 _timeJumpWasPressed = _time;
             }
-
-            if(Input.GetKeyDown(KeyCode.E) && groundIsNote == true)
-            {
-                Debug.Log("Presionaste E");
-                noteManager.PlayNoteAudio(notePlatform);
-            }
-            
         }
 
         private void FixedUpdate()
         {
-            //RaycastHit rayHit;
-
-            //if (Physics.Raycast(transform.position, transform.up * -1, out rayHit, 5f))
-            //{
-            //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * rayHit.distance, Color.green);
-            //    Debug.Log("Hit");
-            //    if(rayHit.collider.gameObject.tag == "Note")
-            //    {
-            //        groundIsNote = true;
-            //    }
-            //}
             CheckCollisions();
 
             HandleJump();
@@ -95,30 +77,21 @@ namespace MusicGame
         
         private float _frameLeftGrounded = float.MinValue;
         [SerializeField]private bool _grounded;
-        [SerializeField]public bool groundIsNote;
-        public void CheckCollisions()
+
+        private void CheckCollisions()
         {
             Physics2D.queriesStartInColliders = false;
 
             // Ground and Ceiling
-            
-
             bool groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer);
             bool ceilingHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.up, _stats.GrounderDistance, ~_stats.PlayerLayer);
-            GameObject groundInfo;
-            
+
             // Hit a Ceiling
             if (ceilingHit) _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
+
             // Landed on the Ground
             if (!_grounded && groundHit)
             {
-                groundInfo = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, _stats.GrounderDistance, ~_stats.PlayerLayer).collider.gameObject;
-                if(groundInfo.gameObject.tag == "Note")
-                {
-                    Debug.Log("Toque Nota");
-                    groundIsNote = true;
-                    notePlatform = groundInfo;
-                }
                 _grounded = true;
                 _coyoteUsable = true;
                 _bufferedJumpUsable = true;
@@ -128,7 +101,6 @@ namespace MusicGame
             // Left the Ground
             else if (_grounded && !groundHit)
             {
-                groundIsNote = false;
                 _grounded = false;
                 _frameLeftGrounded = _time;
                 GroundedChanged?.Invoke(false, 0);
@@ -136,20 +108,9 @@ namespace MusicGame
 
             Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
         }
-        //private void GetNotePlatform(GameObject groundInfo)
-        //{
-        //    groundInfo = 
-        //}
 
         #endregion
-        //public void OnCollisionEnter2D(Collision2D collision)
-        //{
-        //    if (collision.gameObject.tag == "Note")
-        //    {
-        //        Debug.Log("Pise a "+collision.gameObject.name);
-        //        groundIsNote = true;
-        //    }
-        //}
+
 
         #region Jumping
 
@@ -217,9 +178,9 @@ namespace MusicGame
                 _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_stats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
             }
         }
-        
+
         #endregion
-        
+
         private void ApplyMovement() => _rb.velocity = _frameVelocity;
 
 #if UNITY_EDITOR
